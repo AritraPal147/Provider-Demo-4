@@ -5,18 +5,13 @@ import '../models/data.dart';
 
 class AppProvider extends ChangeNotifier {
   final _service = ApiService();
-  bool isLoading = false;
+  bool isLoading = true;
 
   List<Data> _data = [];
-
   List<Data> get data => _data;
 
   Future<void> getAllData() async {
-    isLoading = true;
-    notifyListeners();
-
     final response = await _service.getData();
-
     _data = response;
     isLoading = false;
     notifyListeners();
